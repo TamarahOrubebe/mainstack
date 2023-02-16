@@ -6,7 +6,7 @@ app.use(express.json());
 
 
 app.get("/", (req: Request, res: Response): void => {
-    res.send({message: "Hello there, this is my entry for the mainstack application"});
+    res.send({message: "Hello there, this is my entry for the mainstack Backend Developer application."});
 })
 
 app.use('/products', productsRouter);
