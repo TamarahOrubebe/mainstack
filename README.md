@@ -52,10 +52,11 @@ Clone the repo to have a copy locally and run the following commands:
 
 ```bash
     npm run test
+```
 
 ---
 
-## References
+
 [Back To The Top](#Mainstack)
 
 ---
