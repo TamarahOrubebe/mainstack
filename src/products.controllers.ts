@@ -9,7 +9,7 @@ interface MyProduct {
     deleteProduct: (param1: Request, param2: Response) => void;
 }
 
-class Products implements MyProduct{
+class Products {
     // Add a new product
      async addProduct(req: Request, res: Response) {
         try {
@@ -30,13 +30,12 @@ class Products implements MyProduct{
         try {
             const { page = 1, limit = 10 } = req.query;
             const products = await Product.find()
-            .limit(Number(limit))
-            .skip((Number(page) - 1) * Number(limit))
-            .exec();
-
+                .limit(Number(limit))
+                .skip((Number(page) - 1) * Number(limit));
+            
            return res.json(products);
         } catch (error) {
-            console.error(error);
+             console.error(error);
             res.status(500).json({ error: 'Failed to get products' });
         }
     }
@@ -45,7 +44,7 @@ class Products implements MyProduct{
         try {
             const { id } = req.params;
 
-            const product = await Product.findById(id).exec();
+            const product = await Product.findById(id);
 
             if (!product) {
             return res.status(404).json({ error: 'Product not found' });
@@ -67,13 +66,13 @@ class Products implements MyProduct{
             id,
             { name, price, description, quantity },
             { new: true }
-            ).exec();
+            );
 
             if (!product) {
             return res.status(404).json({ error: 'Product not found' });
             }
 
-            return res.json(product);
+            return res.status(200).json(product);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Failed to update product' });
@@ -84,13 +83,13 @@ class Products implements MyProduct{
     async deleteProduct(req: Request, res: Response) {
         try {
             const { id } = req.params;
-            const product = await Product.findByIdAndDelete(id).exec();
+            const product = await Product.findByIdAndDelete(id);
 
             if (!product) {
             return res.status(404).json({ error: 'Product not found' });
             }
 
-            return res.json(product);
+            return res.status(204).json(product);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Failed to delete product' });
