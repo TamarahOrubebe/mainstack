@@ -11,7 +11,7 @@ mongoose.connection.on("error", (error) => {
 	console.error(error);
 });
 
-async function mongoConnect() {
+async function connect(MONGO_URL: string) {
 	try {
 		await mongoose.connect(MONGO_URL);
 		console.log("connected to Mongo Atlas");
@@ -22,11 +22,11 @@ async function mongoConnect() {
 	
 }
 
-async function mongoDisconnect() {
+async function disconnect() {
 	await mongoose.disconnect();
 }
 
-export {
-	mongoConnect,
-	mongoDisconnect,
+export default{
+	connect,
+	disconnect,
 };
