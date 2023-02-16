@@ -1,9 +1,7 @@
-import dotenv from "dotenv";
-dotenv.config();
+
 import mongoose from 'mongoose';
 
 //Connect to Mongo Atlas with URL
-export const MONGO_URL  = process.env.MONGO_URL as string;
 
 mongoose.connection.once("open", () => {
 	console.log("Mongodb connection is ready");

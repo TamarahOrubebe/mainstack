@@ -1,11 +1,12 @@
-
+import dotenv from "dotenv";
+dotenv.config();
 import http from 'http';
 import app from './app';
-import mongoObj, {MONGO_URL} from './services/mongo';
+import mongoObj from './services/mongo';
 
 
 const server = http.createServer(app);
-
+const MONGO_URL = process.env.MONGO_URL as string;
 const PORT = process.env.PORT || 3000
 
 async function startServer(MONGO_URL: string) {
